@@ -63,7 +63,7 @@ public class CreateVocabulary {
     }
 
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException{
 
         Scanner sc = new Scanner(System.in);
 
@@ -78,10 +78,18 @@ public class CreateVocabulary {
         System.out.println();
         switch (translateDirection) {
             case 1:
-                CreateRusEngVocabulary();
+                try {
+                    CreateRusEngVocabulary();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case 2:
-                CreateEngRusVocabulary();
+                try {
+                    CreateEngRusVocabulary();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 System.err.println("Введено неправильное направление перевода!");
@@ -92,7 +100,12 @@ public class CreateVocabulary {
         File file1 = new File("RusEng.voc");
         FileInputStream f1 = new FileInputStream(file1);
         ObjectInputStream s1 = new ObjectInputStream(f1);
-        HashMap<String, String> fileObj1 = (HashMap<String, String>) s1.readObject();
+        HashMap<String, String> fileObj1 = null;
+        try {
+            fileObj1 = (HashMap<String, String>) s1.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         s1.close();
 
         System.out.println(fileObj1.get("он"));
@@ -101,7 +114,12 @@ public class CreateVocabulary {
         File file2 = new File("EngRus.voc");
         FileInputStream f2 = new FileInputStream(file2);
         ObjectInputStream s2 = new ObjectInputStream(f2);
-        HashMap<String, String> fileObj2 = (HashMap<String, String>) s2.readObject();
+        HashMap<String, String> fileObj2 = null;
+        try {
+            fileObj2 = (HashMap<String, String>) s2.readObject();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         s2.close();
 
         System.out.println(fileObj2.get("she"));

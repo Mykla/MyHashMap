@@ -12,6 +12,10 @@ public class MainTest {
         map.put(1, "Человек1");
         map.put(2, "Человек2");
         map.put(3, "Человек3");
+        map.put(4, "Человек3");
+        map.put(5, "Человек3");
+        map.put(6, "Человек3");
+        map.put(7, "Человек3");
         System.out.println(map.get(1) + " , " + map.get(2));
 
         // 1.
